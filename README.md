@@ -12,7 +12,7 @@ Welcome to the Race Results Predictor project! This project aims to predict race
 - [Acknowledgements](#acknowledgements)
 
 ## Introduction
-This project leverages the Fastf1 library to fetch and analyze Formula 1 race data. The goal is to build a machine learning model that can predict the results of races based on historical data. As this is my first project using Python and machine learning, it's intended as a learning exercise. I'm documenting my journey and progress in the hopes that it might help others who are also starting out.
+This project leverages the Fastf1 library to fetch and analyze Formula 1 race data. The goal is to build a machine learning model that can predict the results of races based on historical data. As this is my first project using Python and machine learning, it's intended as a learning exercise.
 
 ## Features
 - Fetch race data using the Fastf1 library
