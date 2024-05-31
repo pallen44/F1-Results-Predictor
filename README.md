@@ -1,3 +1,4 @@
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
 # Race Results Predictor 🏎️
 
 Welcome to the Race Results Predictor project! This project aims to predict race results using machine learning techniques and the Fastf1 library. This is a learning experience and marks my first venture into Python and machine learning. Your feedback and suggestions are highly appreciated!
