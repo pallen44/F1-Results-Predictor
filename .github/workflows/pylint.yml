@@ -21,3 +21,15 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py') --ignore=plot_speed_on_track.py
+    name: Update pylint badge
+      if: always()
+      run: |
+        if pylint $(git ls-files '*.py') --ignore=plot_speed_on_track.py; then echo '<https://img.shields.io/badge/linting-pylint-success>' > pylint_badge.txt; else echo '<https://img.shields.io/badge/linting-pylint-red>' > pylint_badge.txt; fi
+    - name: Commit badge changes
+      if: always()
+      run: |
+        git config user.name "Your Name"
+        git config user.email "youremail@example.com"
+        git add pylint_badge.txt
+        git commit -m "Update pylint badge"
+        git push
