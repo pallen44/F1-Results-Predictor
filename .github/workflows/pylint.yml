@@ -21,10 +21,3 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py') --ignore=plot_speed_on_track.py
-        if [ $? -eq 0 ]; then echo '<https://img.shields.io/badge/linting-pylint-success>' > pylint_badge.txt; else echo '<https://img.shields.io/badge/linting-pylint-red>' > pylint_badge.txt; fi
-        git config user.name "Parker Allen"
-        git config user.email "pallen6@huskers.unl.edu"
-        git add pylint_badge.txt
-        git commit -m "Update pylint badge"
-        git push
-        
