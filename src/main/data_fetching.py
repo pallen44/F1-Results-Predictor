@@ -16,8 +16,8 @@ class RaceDataFetcher:
         try:
             session = ff1.get_session(season, race_number, 'R')
             session.load()
-            results = session.results
-            drivers = results['Abbreviation']
+            drivers = session.results[['Position','Abbreviation']]
+            # drivers = results[['Position','Abbreviation']]
             return drivers
         except RateLimitExceededError as e:
             self.logger.error("Error fetching race results for %d, race %d: %s",
