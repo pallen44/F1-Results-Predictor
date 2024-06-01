@@ -3,8 +3,6 @@ import logging
 import fastf1 as ff1
 from fastf1 import RateLimitExceededError
 
-
-
 class RaceDataFetcher:
     '''Functions to hit API and gather all of the race data'''
     def __init__(self, cache_dir='../cache_directory'):
@@ -22,8 +20,9 @@ class RaceDataFetcher:
             drivers = results['Abbreviation']
             return drivers
         except RateLimitExceededError as e:
-            print(f"Error fetching race results for {season}, race {race_number}: {e}")
-            return None
+            self.logger.error("Error fetching race results for %d, race %d: %s",
+                              season, race_number, e)
+            raise
 
     def total_rounds_last_year(self, previous_season):
         '''Gets the count of total rounds in last season'''
@@ -33,7 +32,9 @@ class RaceDataFetcher:
             num_rounds = schedule['RoundNumber'].nunique()
             return num_rounds
         except RateLimitExceededError as e:
-            print(f"Error getting race schedule last season: {previous_season}: {e}")
+            self.logger.error("Error getting race schedule last season: %d : %s",
+                              previous_season, e)
+            raise
 
     def get_last_ten_races(self, current_year, current_round):
         '''Gets data for last ten races'''
