@@ -23,7 +23,6 @@ class RaceDataFetcher:
             return drivers
         except RateLimitExceededError as e:
             print(f"Error fetching race results for {season}, race {race_number}: {e}")
-            return None
 
     def total_rounds_last_year(self, previous_season):
         '''Gets the count of total rounds in last season'''
