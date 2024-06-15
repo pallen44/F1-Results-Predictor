@@ -16,7 +16,7 @@ class RaceDataFetcher:
         try:
             session = ff1.get_session(season, race_number, 'R')
             session.load()
-            drivers = session.results[['DriverNumber', 'Position','Abbreviation']]
+            drivers = session.results[['DriverNumber', 'Position','Abbreviation',]]
             return drivers
         except RateLimitExceededError as e:
             self.logger.error("Error fetching race results for %d, race %d: %s",
@@ -39,7 +39,7 @@ class RaceDataFetcher:
         '''Gets data for last ten races'''
         self.logger.info("get_last_ten_races was called")
         race_data = []
-        rounds_to_fetch = 10
+        rounds_to_fetch = 20
 
         while rounds_to_fetch > 0:
             while current_round > 0 and rounds_to_fetch > 0:
@@ -52,4 +52,20 @@ class RaceDataFetcher:
 
         self.logger.info('Finished fetching all data')
         return race_data
-    
+
+    def get_next_race_winner(self, year, target_round):
+        '''Fetches the next race winner for training purposes'''
+        self.logger.info("get_next_race_winner was called")
+
+        try:
+            results = self.fetch_race_results(year, target_round)
+
+            if results is not None and not results.empty:
+                next_race_winner = results.iloc[0]['Abbreviation']
+                return next_race_winner
+            else:
+                self.logger.error("No race winner found for %d, race %d", year, round)
+                return None
+        except IndexError as e:
+            self.logger.error("Error fetching next race winner for %d, race %d: %s", year, round, e)
+            return None

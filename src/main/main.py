@@ -1,6 +1,7 @@
 '''Main File'''
 from data_fetching import RaceDataFetcher
 from preprocessing import Preprocessing
+from model_training import ModelTraining
 
 def main():
     '''Main function'''
@@ -15,6 +16,12 @@ def main():
     preprocessor = Preprocessing()
     race_data_df = preprocessor.preprocess_data(race_data)
     print(race_data_df)
+
+    # Train Model
+    trainer = ModelTraining()
+    trained_model = trainer.train_model(race_data_df)
+    print(trained_model)
+
 
 if __name__ == "__main__":
     main()
