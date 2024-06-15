@@ -53,16 +53,18 @@ class RaceDataFetcher:
         self.logger.info('Finished fetching all data')
         return race_data
 
-    def get_next_race_winner(self, year, target_round):
-        '''Fetches the next race winner for training purposes'''
-        self.logger.info("get_next_race_winner was called")
+    # def get_next_race_winner(self, year, target_round):
+    #     '''Fetches the next race winner for training purposes'''
+    #     self.logger.info("get_next_race_winner was called")
 
-        try:
-            results = self.fetch_race_results(year, target_round)
+    #     try:
+    #         results = self.fetch_race_results(year, target_round)
 
-            if results is not None and not results.empty:
-                next_race_winner = results.iloc[0]['Abbreviation']
-                return next_race_winner
-        except IndexError as e:
-            self.logger.error("Error fetching next race winner for %d, race %d: %s", year, round, e)
-            return None
+    #         if results is not None and not results.empty:
+    #             next_race_winner = results.iloc[0]['Abbreviation']
+    #             return next_race_winner
+
+    #     except IndexError as e:
+    #         self.logger.error("Error fetching next race winner for %d,
+    #                   race %d: %s", year, round, e)
+    #         return None
