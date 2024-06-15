@@ -63,9 +63,6 @@ class RaceDataFetcher:
             if results is not None and not results.empty:
                 next_race_winner = results.iloc[0]['Abbreviation']
                 return next_race_winner
-            else:
-                self.logger.error("No race winner found for %d, race %d", year, round)
-                return None
         except IndexError as e:
             self.logger.error("Error fetching next race winner for %d, race %d: %s", year, round, e)
             return None
